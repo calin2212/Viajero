@@ -1069,17 +1069,46 @@
             <div class="flex flex-col">
               <div class="flex items-center gap-1.5 text-primary">
                 <span class="material-symbols-outlined text-[22px]">tune</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface">Panel de Reajuste y Compensación</h3>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface" id="rebalance-panel-title">Panel de Reajuste y Compensación</h3>
               </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5" id="rebalance-panel-desc">
                 Modifiquen una estación previa por una opción más económica para recuperar los S/ 500 de seguridad:
               </p>
             </div>
 
             <!-- Contenedor dinámico de opciones de reajuste -->
             <div class="flex flex-col gap-space-sm" id="rebalance-cards-container">
+              <!-- Rebalance Card 0: Mantener Plan Original (Si la reserva está cubierta) -->
+              <div class="rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container" id="rebalance-opt-keep">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-DEFAULT bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[18px]">verified</span>
+                    </div>
+                    <div>
+                      <span class="font-headline-sm text-[16px] text-on-surface font-bold block leading-snug">Mantener Plan Actual (Sin Reajuste)</span>
+                      <span class="font-body-sm text-[13px] text-on-surface-variant" id="rebalance-keep-desc">Conserva los servicios elegidos. El saldo cubre el cofre de S/ 500.</span>
+                    </div>
+                  </div>
+                  <span class="font-label-badge text-label-badge bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded-full font-black" id="rebalance-keep-badge">
+                    Reserva Protegida
+                  </span>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded-DEFAULT flex items-center justify-between text-on-surface font-body-sm">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-tertiary text-[18px]">check_circle</span>
+                    <span id="rebalance-keep-status-text">Cofre de seguridad intacto + margen de retorno</span>
+                  </div>
+                  <span class="text-tertiary font-bold text-label-badge" id="rebalance-keep-tag">Reserva Segura</span>
+                </div>
+                <button class="w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer" id="btn-rebal-keep" type="button">
+                  <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                  <span>Opción Activa (Mantener Plan)</span>
+                </button>
+              </div>
+
               <!-- Rebalance Card 1: Transporte -->
-              <div class="rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container" id="rebalance-opt-transport" data-saving="600">
+              <div class="rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100" id="rebalance-opt-transport" data-saving="600">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-DEFAULT bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
@@ -1090,20 +1119,20 @@
                       <span class="font-body-sm text-[13px] text-on-surface-variant" id="rebalance-transport-prevlabel">Plan previo: Bus Cama VIP (S/ 1 400)</span>
                     </div>
                   </div>
-                  <span class="font-label-badge text-label-badge bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded-full font-black">
+                  <span class="font-label-badge text-label-badge bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded-full font-black" id="rebalance-transport-saving-badge">
                     + S/ 600 Ahorro
                   </span>
                 </div>
                 <div class="bg-surface-container-low p-2 rounded-DEFAULT flex items-center justify-between text-on-surface font-body-sm">
                   <div class="flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-tertiary text-[18px]">swap_horiz</span>
-                    <span>Cambio a: <strong class="font-bold text-on-surface">Bus Estándar (S/ 800)</strong></span>
+                    <span id="rebalance-transport-targetlabel">Cambio a: <strong class="font-bold text-on-surface">Bus Estándar (S/ 800)</strong></span>
                   </div>
-                  <span class="text-tertiary font-bold text-label-badge">Recupera Reserva</span>
+                  <span class="text-tertiary font-bold text-label-badge" id="rebal-transport-status-tag">Recupera Reserva</span>
                 </div>
-                <button class="w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer" id="btn-rebal-transport" type="button">
-                  <span class="material-symbols-outlined text-[18px]">check_circle</span>
-                  <span>Opción Activa (Ahorro S/ 600)</span>
+                <button class="w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer" id="btn-rebal-transport" type="button">
+                  <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+                  <span>Cambiar a esta opción (+ S/ 600)</span>
                 </button>
               </div>
 
@@ -1119,16 +1148,16 @@
                       <span class="font-body-sm text-[13px] text-on-surface-variant" id="rebalance-lodging-prevlabel">Plan previo: Hotel Familiar (S/ 680)</span>
                     </div>
                   </div>
-                  <span class="font-label-badge text-label-badge bg-surface-container text-on-surface-variant px-2 py-1 rounded-full font-bold">
+                  <span class="font-label-badge text-label-badge bg-surface-container text-on-surface-variant px-2 py-1 rounded-full font-bold" id="rebalance-lodging-saving-badge">
                     + S/ 360 Ahorro
                   </span>
                 </div>
                 <div class="bg-surface-container-low p-2 rounded-DEFAULT flex items-center justify-between text-on-surface font-body-sm">
                   <div class="flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-on-surface-variant text-[18px]">swap_horiz</span>
-                    <span>Cambio a: <strong class="font-bold">Hostal Mochilero (S/ 320)</strong></span>
+                    <span id="rebalance-lodging-targetlabel">Cambio a: <strong class="font-bold">Hostal Mochilero (S/ 320)</strong></span>
                   </div>
-                  <span class="text-error font-bold text-label-badge text-[12px]" id="rebal-lodging-deficit-tag">Faltan S/ 140</span>
+                  <span class="text-tertiary font-bold text-label-badge text-[12px]" id="rebal-lodging-status-tag">Recupera Reserva</span>
                 </div>
                 <button class="w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer" id="btn-rebal-lodging" type="button">
                   <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
@@ -1242,64 +1271,126 @@
 
         <!-- ================= VISTA 4: ACTO 4 (PASAPORTE & REPORTE OFICIAL PDF) ================= -->
         <section id="view-pasaporte" class="view-panel hidden flex flex-col w-full pb-8">
-          <!-- Banner Hero de Victoria -->
-          <div class="relative overflow-hidden rounded-lg bg-surface-container-low p-space-md shadow-md mb-space-md text-center">
-            <div class="absolute -top-12 -right-12 w-36 h-36 bg-primary-container/20 rounded-full blur-2xl pointer-events-none"></div>
-            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-tertiary-container/20 rounded-full blur-2xl pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col items-center">
-              <div class="relative mb-space-sm flex items-center justify-center">
-                <div class="w-16 h-4 bg-error rounded-full absolute -top-1 shadow-sm flex items-center justify-center">
-                  <div class="w-6 h-full bg-surface-container-lowest"></div>
-                </div>
-                <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-primary to-primary-container shadow-xl flex items-center justify-center text-surface-container-lowest transform transition-transform hover:rotate-12 duration-300">
-                  <span class="material-symbols-outlined text-[44px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-                </div>
-                <div class="absolute -bottom-1 -right-1 bg-surface-container-lowest text-primary rounded-full px-1.5 py-0.5 shadow-sm font-label-badge text-label-badge flex items-center gap-0.5">
-                  <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
-                  <span>100%</span>
-                </div>
-              </div>
-              <span class="bg-primary-container text-on-primary-container font-label-badge text-label-badge px-3 py-1 rounded-full uppercase tracking-wider mb-space-xs shadow-sm inline-flex items-center gap-1">
-                <span class="material-symbols-outlined text-[16px]">military_tech</span>
-                ¡MISIÓN CUMPLIDA CON ÉXITO!
-              </span>
-              <h1 class="font-headline-md text-headline-md text-on-surface leading-tight mb-space-xs">
-                ¡Felicitaciones, Viajeros Financieros!
-              </h1>
-              <p class="font-body-sm text-body-sm text-on-surface-variant max-w-[360px] mb-space-sm">
-                Dominaron el reto de los <strong class="text-on-surface font-bold">cinco mil soles</strong> cuidando cada sol frente a los imprevistos del viaje.
-              </p>
-              
-              <!-- Badges de Guías -->
-              <div class="flex items-center justify-center gap-space-md w-full bg-surface-container-lowest/80 backdrop-blur-sm rounded-DEFAULT p-space-xs shadow-sm">
-                <div class="flex items-center gap-1.5">
-                  <img src="assets/images/chasky.jpg" alt="Chasky" class="w-8 h-8 rounded-full object-cover border border-amber-400" onerror="this.src='assets/images/chasky_avatar.jpg'"/>
-                  <div class="text-left">
-                    <span class="font-label-badge text-label-badge text-primary block leading-none">Chasky</span>
-                    <span class="font-body-sm text-[12px] text-on-surface-variant">¡Valió el esfuerzo!</span>
+          <!-- ================= GRAN PASAPORTE VIAJERO OFICIAL DE EXPEDICIÓN (ESTILO LIBRETA NACIONAL) ================= -->
+          <div class="relative overflow-hidden rounded-2xl border-4 border-amber-500/70 bg-slate-950 shadow-2xl mb-space-md text-white">
+            <!-- Fondo Turístico Fotográfico del Destino con Overlay de Seguridad -->
+            <div id="passport-hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-40 scale-105" style="background-image: url('assets/images/dest_cusco.jpg');"></div>
+            <!-- Filigrana geométrica y gradiente protector para legibilidad -->
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/85 to-slate-950/95 backdrop-blur-[1px]"></div>
+            
+            <!-- Contenido del Pasaporte -->
+            <div class="relative z-10 p-space-md flex flex-col gap-space-sm">
+              <!-- Franja Superior Oficial del Pasaporte -->
+              <div class="flex items-center justify-between border-b border-amber-400/30 pb-2.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-10 h-10 rounded-full bg-amber-500/20 border-2 border-amber-400/70 flex items-center justify-center text-amber-300 shadow-inner">
+                    <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">travel_explore</span>
+                  </div>
+                  <div>
+                    <span class="font-headline-sm text-[12px] sm:text-[14px] text-amber-300 font-black uppercase tracking-widest block leading-none">
+                      REPÚBLICA DEL PERÚ • PASAPORTE VIAJERO
+                    </span>
+                    <span class="font-body-sm text-[11px] text-slate-300 block mt-0.5">
+                      Expedición Escolar de Matemática Financiera • Reto de los S/ 5 000
+                    </span>
                   </div>
                 </div>
-                <div class="h-6 w-px bg-surface-container-high"></div>
-                <div class="flex items-center gap-1.5">
-                  <img src="assets/images/kusi.jpg" alt="Kusi" class="w-8 h-8 rounded-full object-cover border border-emerald-400" onerror="this.src='assets/images/kusi_avatar.jpg'"/>
-                  <div class="text-left">
-                    <span class="font-label-badge text-label-badge text-tertiary block leading-none">Kusi</span>
-                    <span class="font-body-sm text-[12px] text-on-surface-variant">¡Gran cálculo!</span>
+                <div class="text-right">
+                  <span class="bg-amber-400 text-slate-950 font-black text-[11px] px-2.5 py-0.5 rounded uppercase tracking-wider shadow-sm" id="passport-code-badge">
+                    PE-2026-OFICIAL
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bloque Principal: Foto del Guía Oficial + Datos del Pasaporte + Sello de Migraciones -->
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-space-sm items-center pt-1">
+                <!-- Foto Oficial del Guía con su Sello de Aprobación -->
+                <div class="md:col-span-4 flex flex-col items-center text-center p-space-xs bg-slate-900/80 border border-amber-400/40 rounded-xl shadow-inner relative">
+                  <div class="relative mb-2">
+                    <img id="passport-guide-img" src="assets/images/kusi.jpg" alt="Guía Oficial" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover border-2 border-amber-400 shadow-lg"/>
+                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-400 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow whitespace-nowrap">
+                      Guía Oficial
+                    </div>
+                  </div>
+                  <h4 class="font-headline-sm text-[16px] font-extrabold text-amber-200 mt-2 leading-tight" id="passport-guide-name">
+                    Kusi
+                  </h4>
+                  <span class="text-[11px] text-slate-300 font-medium" id="passport-guide-badge">
+                    Guía Oficial de Ruta
+                  </span>
+                  <div class="mt-2 w-full bg-emerald-950/80 border border-emerald-400/50 rounded-DEFAULT px-2 py-1 text-[11px] text-emerald-300 font-bold flex items-center justify-center gap-1 shadow-sm">
+                    <span class="material-symbols-outlined text-[14px]">verified</span>
+                    <span>Visado y Certificado</span>
+                  </div>
+                </div>
+
+                <!-- Datos del Pasaporte (NOMBRE DEL EQUIPO DESTACADO) -->
+                <div class="md:col-span-8 flex flex-col gap-2 relative">
+                  <!-- Sello Dinámico de Migraciones Estampado en Diagonal -->
+                  <div class="absolute -right-2 -top-2 sm:right-0 sm:-top-1 rotate-[-7deg] border-2 border-dashed border-red-500/80 bg-red-950/70 text-red-200 px-3 py-1.5 rounded-lg shadow-xl pointer-events-none z-20 text-center backdrop-blur-xs">
+                    <span class="text-[9px] font-black uppercase tracking-widest block text-red-300">★ MIGRACIONES Y TURISMO ★</span>
+                    <span class="text-[12px] font-black text-amber-300 uppercase block leading-none my-0.5" id="passport-stamp-dest">CUSCO VISITADO</span>
+                    <span class="text-[8px] font-bold text-red-200 tracking-wider block">RESERVA S/ 500 INTACTA • NIVEL AD</span>
+                  </div>
+
+                  <!-- Campo 1: Nombre del Equipo (Muy Grande y Destacado) -->
+                  <div class="border-b border-slate-700/70 pb-2 pr-28 sm:pr-36">
+                    <span class="text-[10px] sm:text-[11px] text-amber-400/80 uppercase tracking-wider font-extrabold block">
+                      EQUIPO EXPLORADOR / EXPEDITION TEAM:
+                    </span>
+                    <span class="font-headline-md text-[22px] sm:text-[28px] font-black text-amber-300 uppercase tracking-wide leading-tight drop-shadow-md block" id="passport-team-name">
+                      Los Chasquis Matemáticos
+                    </span>
+                  </div>
+
+                  <!-- Campo 2: Destino Visitado con Fondo Turístico -->
+                  <div class="grid grid-cols-2 gap-2 border-b border-slate-700/70 pb-2">
+                    <div>
+                      <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold block">
+                        DESTINO VISITADO / DESTINATION:
+                      </span>
+                      <span class="font-headline-sm text-[15px] font-extrabold text-white block leading-tight mt-0.5" id="passport-dest-name">
+                        Cusco Imperial (Sierra)
+                      </span>
+                      <span class="text-[11px] text-amber-200/90 italic truncate block mt-0.5" id="passport-dest-route">
+                        Ruta Valle Sagrado y Machu Picchu
+                      </span>
+                    </div>
+                    <div>
+                      <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold block">
+                        CATEGORÍA EDUCATIVA:
+                      </span>
+                      <span class="font-headline-sm text-[14px] font-bold text-white block leading-tight mt-0.5">
+                        6.° Grado de Primaria
+                      </span>
+                      <span class="text-[11px] text-slate-300 block mt-0.5">
+                        Ciclo V • Gestión Financiera
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Campo 3: Balance de Pasaporte (Fondo Inicial vs. Retorno Protegido) -->
+                  <div class="grid grid-cols-3 gap-1.5 pt-0.5 text-center">
+                    <div class="bg-slate-900/80 p-2 rounded-DEFAULT border border-slate-700/60 shadow-inner">
+                      <span class="text-[9px] text-slate-400 uppercase font-bold block">Presupuesto</span>
+                      <span class="text-[14px] font-black text-white">S/ 5 000</span>
+                    </div>
+                    <div class="bg-emerald-950/70 p-2 rounded-DEFAULT border border-emerald-500/50 shadow-inner">
+                      <span class="text-[9px] text-emerald-300 uppercase font-bold block">Cofre Retorno</span>
+                      <span class="text-[14px] font-black text-emerald-300">S/ 500 Intacto</span>
+                    </div>
+                    <div class="bg-amber-950/70 p-2 rounded-DEFAULT border border-amber-500/50 shadow-inner">
+                      <span class="text-[9px] text-amber-300 uppercase font-bold block">Saldo en Mano</span>
+                      <span class="text-[14px] font-black text-amber-200" id="passport-kpi-hand">S/ 1 230</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Metadata del Equipo Dinámica -->
-              <div class="mt-space-sm flex flex-wrap items-center justify-center gap-1.5 text-on-surface-variant">
-                <span class="bg-surface-container px-2 py-0.5 rounded-full font-label-badge text-label-badge text-on-surface font-bold" id="final-team-name-tag">
-                  👥 Los Chasquis Matemáticos
-                </span>
-                <span class="bg-surface-container px-2 py-0.5 rounded-full font-label-badge text-label-badge text-on-surface font-bold" id="final-dest-name-tag">
-                  📍 Cusco Imperial
-                </span>
-                <span class="bg-surface-container px-2 py-0.5 rounded-full font-label-badge text-label-badge text-primary font-bold">
-                  🎓 6.° de Primaria
-                </span>
+              <!-- Banda Inferior MRZ (Machine Readable Zone de Pasaporte Internacional) -->
+              <div class="mt-2 bg-black/85 p-2 sm:p-2.5 rounded-lg border border-amber-400/40 text-amber-300 font-mono text-[10px] sm:text-[12px] tracking-widest leading-relaxed uppercase shadow-inner overflow-x-auto select-all" id="passport-mrz-zone">
+                P&lt;PER&lt;&lt;LOS&lt;CHASQUIS&lt;MATEMATICOS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br/>
+                PE2026&lt;5000&lt;7PER&lt;&lt;&lt;&lt;&lt;&lt;&lt;6P&lt;PRIMARIA&lt;COFRE&lt;S500&lt;OK&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
               </div>
             </div>
           </div>
@@ -3535,17 +3626,64 @@
       // -----------------------------------------------------------------------
       // 11. RENDERIZADO DEL ACTO 3 (TARJETA SORPRESA & REAJUSTE)
       // -----------------------------------------------------------------------
+      function getRebalanceOptionSavings() {
+        const selTransport = State.selections[0];
+        const currentTransportCost = selTransport && selTransport.cost ? selTransport.cost : 1400;
+        const transportOptA = stationsData[0].options[0]; // Bus Estándar (S/ 800)
+        let currentTransportName = "Bus Cama VIP";
+        if (selTransport && selTransport.optionId) {
+          const found = stationsData[0].options.find(o => o.id === selTransport.optionId);
+          if (found) currentTransportName = found.name;
+        }
+        const transportSaving = Math.max(0, currentTransportCost - transportOptA.costTotal);
+
+        const selLodging = State.selections[1];
+        const currentLodgingCost = selLodging && selLodging.cost ? selLodging.cost : 680;
+        const lodgingOptA = stationsData[1].options[0]; // Hostal Mochilero (S/ 320)
+        let currentLodgingName = "Hotel Familiar";
+        if (selLodging && selLodging.optionId) {
+          const found = stationsData[1].options.find(o => o.id === selLodging.optionId);
+          if (found) currentLodgingName = found.name;
+        }
+        const lodgingSaving = Math.max(0, currentLodgingCost - lodgingOptA.costTotal);
+
+        return {
+          transport: {
+            currentCost: currentTransportCost,
+            currentName: currentTransportName,
+            newCost: transportOptA.costTotal,
+            newName: transportOptA.name,
+            saving: transportSaving,
+            isAlreadyMin: transportSaving === 0
+          },
+          lodging: {
+            currentCost: currentLodgingCost,
+            currentName: currentLodgingName,
+            newCost: lodgingOptA.costTotal,
+            newName: lodgingOptA.name,
+            saving: lodgingSaving,
+            isAlreadyMin: lodgingSaving === 0
+          }
+        };
+      }
+
       function getDynamicSurpriseSpeech(event, prevBalance) {
         const resultingBalance = prevBalance - event.cost;
         const deficitOverall = State.reserveFund - resultingBalance;
 
-        if (resultingBalance >= 0) {
-          // El saldo en mano cubrió la cuenta, pero se consumió la reserva
-          return `«¡Atención, equipo! Ocurrió ${event.label.toLowerCase()} por ${event.cost} soles. Teníamos ${prevBalance} soles, así que pudimos pagar la cuenta completa y nos quedan ${resultingBalance} soles. Sin embargo, las reglas exigen tener siempre quinientos soles de reserva y ahora solo nos quedan ${resultingBalance} soles, por lo que nos faltan ${deficitOverall} soles para estar seguros en el regreso. ¡Reajustemos una estación para recuperar nuestros quinientos soles de reserva!»`;
+        if (resultingBalance >= State.reserveFund) {
+          // El saldo cubrió la cuenta Y además la reserva de S/ 500 está 100% intacta
+          const surplus = resultingBalance - State.reserveFund;
+          return `«¡Excelente planificación, equipo! Ocurrió ${event.label.toLowerCase()} por ${event.cost} soles. Teníamos ${prevBalance} soles, así que pudimos pagar la cuenta completa y todavía nos quedan ${resultingBalance} soles. Como la regla del viaje exige tener quinientos soles de reserva para el regreso, ¡nuestro cofre de seguridad está completamente a salvo y nos sobran ${surplus} soles libres! Su presupuesto inicial resistió el imprevisto con gran éxito. Pueden mantener su plan tal como está o realizar un reajuste voluntario si desean volver a casa con un colchón de dinero aún mayor.»`;
+        } else if (resultingBalance >= 0) {
+          // El saldo cubrió la cuenta, pero se consumió parte de la reserva de S/ 500
+          const deficit = State.reserveFund - resultingBalance;
+          return `«¡Atención, equipo! Ocurrió ${event.label.toLowerCase()} por ${event.cost} soles. Teníamos ${prevBalance} soles, así que pudimos pagar la cuenta completa, pero ahora nos quedan ${resultingBalance} soles. Sin embargo, las reglas exigen tener siempre quinientos soles de reserva para el regreso y nos faltan ${deficit} soles para completarla. ¡Reajustemos una estación para recuperar nuestros quinientos soles obligatorios de reserva!»`;
         } else {
-          // La cuenta superó todo el saldo disponible
+          // La cuenta superó todo el saldo disponible (hay deuda)
           const debt = Math.abs(resultingBalance);
-          return `«¡Alerta roja, equipo! Ocurrió ${event.label.toLowerCase()} por ${event.cost} soles. Teníamos ${prevBalance} soles y el gasto superó todo nuestro dinero disponible por ${debt} soles. Además, perdimos la reserva de seguridad de quinientos soles. ¡Debemos reajustar urgentemente una estación para pagar la deuda y reponer el cofre de emergencia!»`;
+          const totalNeeded = debt + State.reserveFund;
+          return `«¡Alerta roja, equipo! Ocurrió ${event.label.toLowerCase()} por ${event.cost} soles. Teníamos ${prevBalance} soles y el gasto superó todo nuestro dinero disponible por ${debt} soles de deuda. Además, perdimos la reserva de seguridad de quinientos soles. Nos faltan ${totalNeeded} soles para saldar la cuenta y recuperar el cofre. ¡Debemos reajustar urgentemente una estación para pagar la deuda y asegurar el retorno!»`;
         }
       }
 
@@ -3578,7 +3716,7 @@
         // Cálculos reales del impacto basados en el saldo actual del equipo
         const prevBalance = calculateBalance();
         const resultingBalance = prevBalance - event.cost;
-        const deficitOverall = State.reserveFund - resultingBalance; // Cuánto falta para tener los S/ 500
+        const deficitOverall = State.reserveFund - resultingBalance; // Positivo si falta, <= 0 si sobra
         const dynamicSpeech = getDynamicSurpriseSpeech(event, prevBalance);
 
         // Títulos y Textos del Evento
@@ -3608,8 +3746,11 @@
         const alertDesc = document.getElementById('reserve-alert-desc');
         const kpiResultBox = document.getElementById('kpi-result-box');
         const kpiStatusTag = document.getElementById('kpi-result-status-tag');
+        const panelTitle = document.getElementById('rebalance-panel-title');
+        const panelDesc = document.getElementById('rebalance-panel-desc');
 
         if (deficitOverall > 0) {
+          // Caso: La reserva fue vulnerada o hay deuda
           alertBox.className = "bg-error-container text-on-error-container p-space-sm rounded-DEFAULT shadow-sm flex items-start gap-space-sm";
           alertTitle.textContent = "¡Cofre de Reserva de S/ 500 Vulnerado!";
           alertBadge.className = "font-label-badge text-label-badge bg-error text-on-error px-2 py-0.5 rounded-full font-bold";
@@ -3618,36 +3759,179 @@
           if (resultingBalance >= 0) {
             alertDesc.innerHTML = `🚨 El imprevisto costó <strong class="font-bold">S/ ${event.cost.toLocaleString()}</strong>. Con sus <strong class="font-bold">S/ ${prevBalance.toLocaleString()}</strong> cubrieron el gasto y les quedaron <strong class="underline font-bold">S/ ${resultingBalance.toLocaleString()}</strong> en mano. ¡Pero la regla del viaje exige tener como mínimo <strong class="font-bold">S/ 500</strong> en el cofre de emergencia! Faltan <strong class="text-error font-black">S/ ${deficitOverall.toLocaleString()}</strong> para reponer la reserva de seguridad para volver a casa.`;
           } else {
-            alertDesc.innerHTML = `🚨 El imprevisto costó <strong class="font-bold">S/ ${event.cost.toLocaleString()}</strong> y superó su saldo disponible por <strong class="text-error font-black">S/ ${Math.abs(resultingBalance).toLocaleString()}</strong>. Además, la reserva quedó totalmente en cero. ¡Faltan <strong class="font-black">S/ ${deficitOverall.toLocaleString()}</strong> para saldar la deuda y reponer los S/ 500 de seguridad!`;
+            alertDesc.innerHTML = `🚨 El imprevisto costó <strong class="font-bold">S/ ${event.cost.toLocaleString()}</strong> y superó su saldo disponible por <strong class="text-error font-black">S/ ${Math.abs(resultingBalance).toLocaleString()}</strong> de deuda. Además, la reserva quedó totalmente en cero. ¡Faltan <strong class="font-black">S/ ${(Math.abs(resultingBalance) + State.reserveFund).toLocaleString()}</strong> para saldar la cuenta y reponer los S/ 500 de seguridad!`;
           }
           
           kpiResultBox.className = "flex flex-col items-center justify-center p-space-sm bg-error text-on-error rounded-DEFAULT shadow-md text-center";
           kpiStatusTag.innerHTML = `<span class="material-symbols-outlined text-[13px]">warning</span> Reserva en Riesgo`;
+
+          if (panelTitle) panelTitle.textContent = "Panel de Reajuste y Compensación";
+          if (panelDesc) panelDesc.textContent = `Modifiquen una estación previa por una opción más económica para recuperar los S/ ${deficitOverall.toLocaleString()} faltantes y asegurar los S/ 500 de reserva:`;
+
+          if (State.rebalanceSelection === 'keep') {
+            State.rebalanceSelection = 'transport';
+          }
         } else {
+          // Caso: La reserva de S/ 500 está COMPLETAMENTE CUBIERTA e intacta
+          const freeSurplus = resultingBalance - State.reserveFund;
           alertBox.className = "bg-tertiary-container/30 text-on-tertiary-container p-space-sm rounded-DEFAULT shadow-sm flex items-start gap-space-sm";
           alertTitle.textContent = "¡Emergencia Absorbida con Éxito!";
           alertBadge.className = "font-label-badge text-label-badge bg-tertiary text-on-tertiary px-2 py-0.5 rounded-full font-bold";
-          alertBadge.textContent = "RESERVA CUBIERTA";
-          alertDesc.innerHTML = `✅ Su saldo resultante de <strong class="font-bold">S/ ${resultingBalance.toLocaleString()}</strong> cubre los S/ 500 de seguridad del viaje.`;
+          alertBadge.textContent = "RESERVA CUBIERTA E INTACTA";
+          alertDesc.innerHTML = `✅ Su saldo resultante de <strong class="font-bold">S/ ${resultingBalance.toLocaleString()}</strong> cubre totalmente los S/ 500 obligatorios del cofre de regreso y les deja <strong class="text-tertiary font-black">+ S/ ${freeSurplus.toLocaleString()}</strong> de margen libre.`;
 
           kpiResultBox.className = "flex flex-col items-center justify-center p-space-sm bg-tertiary text-on-tertiary rounded-DEFAULT shadow-md text-center";
-          kpiStatusTag.innerHTML = `<span class="material-symbols-outlined text-[13px]">check_circle</span> Seguro`;
+          kpiStatusTag.innerHTML = `<span class="material-symbols-outlined text-[13px]">check_circle</span> Seguro (+S/ ${freeSurplus})`;
+
+          if (panelTitle) panelTitle.textContent = "Panel de Decisión y Optimización";
+          if (panelDesc) panelDesc.textContent = `¡Felicitaciones! Su equipo planificó tan bien que el saldo actual ya cubre los S/ 500 obligatorios con S/ ${freeSurplus.toLocaleString()} libres adicionales. Pueden validar y conservar su plan original sin recortes, o hacer un reajuste solidario para aumentar su dinero de regreso:`;
+
+          if (State.rebalanceSelection !== 'transport' && State.rebalanceSelection !== 'lodging') {
+            State.rebalanceSelection = 'keep';
+          }
+        }
+
+        // Obtener Ahorros Dinámicos basados en elecciones reales
+        const optSavings = getRebalanceOptionSavings();
+        const t = optSavings.transport;
+        const l = optSavings.lodging;
+
+        // Tarjeta Keep (Mantener Plan)
+        const cardKeep = document.getElementById('rebalance-opt-keep');
+        const btnKeep = document.getElementById('btn-rebal-keep');
+        if (cardKeep) {
+          if (deficitOverall <= 0) {
+            cardKeep.classList.remove('hidden');
+            const keepDesc = document.getElementById('rebalance-keep-desc');
+            const keepStatusText = document.getElementById('rebalance-keep-status-text');
+            const surplus = resultingBalance - State.reserveFund;
+            if (keepDesc) keepDesc.textContent = `Conserva los servicios elegidos. El saldo de S/ ${resultingBalance.toLocaleString()} cubre el cofre de S/ 500 y deja S/ ${surplus.toLocaleString()} libres.`;
+            if (keepStatusText) keepStatusText.textContent = `Cofre de seguridad intacto (S/ 500) + S/ ${surplus.toLocaleString()} margen de retorno`;
+          } else {
+            cardKeep.classList.add('hidden');
+          }
+        }
+
+        // Tarjeta Transporte
+        const cardTransport = document.getElementById('rebalance-opt-transport');
+        const btnTransport = document.getElementById('btn-rebal-transport');
+        const transPrevLabel = document.getElementById('rebalance-transport-prevlabel');
+        const transSavingBadge = document.getElementById('rebalance-transport-saving-badge');
+        const transTargetLabel = document.getElementById('rebalance-transport-targetlabel');
+        const transStatusTag = document.getElementById('rebal-transport-status-tag');
+
+        if (transPrevLabel) transPrevLabel.textContent = `Plan previo: ${t.currentName} (S/ ${t.currentCost.toLocaleString()})`;
+        if (transSavingBadge) transSavingBadge.textContent = `+ S/ ${t.saving.toLocaleString()} Ahorro`;
+        if (transTargetLabel) transTargetLabel.innerHTML = `Cambio a: <strong class="font-bold text-on-surface">Bus Estándar (S/ 800)</strong>`;
+
+        const projT = resultingBalance + t.saving;
+        if (transStatusTag) {
+          if (projT >= State.reserveFund) {
+            transStatusTag.className = "text-tertiary font-bold text-label-badge";
+            transStatusTag.textContent = `Recupera Reserva (+ S/ ${(projT - State.reserveFund).toLocaleString()} libre)`;
+          } else {
+            transStatusTag.className = "text-error font-bold text-label-badge";
+            transStatusTag.textContent = `Faltan S/ ${(State.reserveFund - projT).toLocaleString()}`;
+          }
+        }
+
+        // Tarjeta Hospedaje
+        const cardLodging = document.getElementById('rebalance-opt-lodging');
+        const btnLodging = document.getElementById('btn-rebal-lodging');
+        const lodgPrevLabel = document.getElementById('rebalance-lodging-prevlabel');
+        const lodgSavingBadge = document.getElementById('rebalance-lodging-saving-badge');
+        const lodgTargetLabel = document.getElementById('rebalance-lodging-targetlabel');
+        const lodgStatusTag = document.getElementById('rebal-lodging-status-tag');
+
+        if (lodgPrevLabel) lodgPrevLabel.textContent = `Plan previo: ${l.currentName} (S/ ${l.currentCost.toLocaleString()})`;
+        if (lodgSavingBadge) lodgSavingBadge.textContent = `+ S/ ${l.saving.toLocaleString()} Ahorro`;
+        if (lodgTargetLabel) lodgTargetLabel.innerHTML = `Cambio a: <strong class="font-bold">Hostal Mochilero (S/ 320)</strong>`;
+
+        const projL = resultingBalance + l.saving;
+        if (lodgStatusTag) {
+          if (projL >= State.reserveFund) {
+            lodgStatusTag.className = "text-tertiary font-bold text-label-badge text-[12px]";
+            lodgStatusTag.textContent = `Recupera Reserva (+ S/ ${(projL - State.reserveFund).toLocaleString()} libre)`;
+          } else {
+            lodgStatusTag.className = "text-error font-bold text-label-badge text-[12px]";
+            lodgStatusTag.textContent = `Faltan S/ ${(State.reserveFund - projL).toLocaleString()}`;
+          }
+        }
+
+        // Determinar ahorro de la opción seleccionada
+        let saving = 0;
+        if (State.rebalanceSelection === 'keep') {
+          saving = 0;
+        } else if (State.rebalanceSelection === 'transport') {
+          saving = t.saving;
+        } else if (State.rebalanceSelection === 'lodging') {
+          saving = l.saving;
+        }
+
+        // Aplicar estilos de selección a las tarjetas
+        if (State.rebalanceSelection === 'keep') {
+          if (cardKeep) cardKeep.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container";
+          if (btnKeep) {
+            btnKeep.className = "w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer";
+            btnKeep.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Opción Activa (Conserva Plan Original)</span>';
+          }
+          if (cardTransport) cardTransport.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
+          if (btnTransport) {
+            btnTransport.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
+            btnTransport.innerHTML = `<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Cambiar a esta opción (+ S/ ${t.saving.toLocaleString()})</span>`;
+          }
+          if (cardLodging) cardLodging.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
+          if (btnLodging) {
+            btnLodging.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
+            btnLodging.innerHTML = `<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Cambiar a esta opción (+ S/ ${l.saving.toLocaleString()})</span>`;
+          }
+        } else if (State.rebalanceSelection === 'transport') {
+          if (cardKeep) cardKeep.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
+          if (btnKeep) {
+            btnKeep.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
+            btnKeep.innerHTML = '<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Mantener Plan Original (S/ 0 Ahorro)</span>';
+          }
+          if (cardTransport) cardTransport.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container";
+          if (btnTransport) {
+            btnTransport.className = "w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer";
+            btnTransport.innerHTML = `<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Opción Activa (Ahorro S/ ${t.saving.toLocaleString()})</span>`;
+          }
+          if (cardLodging) cardLodging.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
+          if (btnLodging) {
+            btnLodging.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
+            btnLodging.innerHTML = `<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Cambiar a esta opción (+ S/ ${l.saving.toLocaleString()})</span>`;
+          }
+        } else {
+          if (cardKeep) cardKeep.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
+          if (btnKeep) {
+            btnKeep.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
+            btnKeep.innerHTML = '<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Mantener Plan Original (S/ 0 Ahorro)</span>';
+          }
+          if (cardLodging) cardLodging.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container";
+          if (btnLodging) {
+            btnLodging.className = "w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer";
+            btnLodging.innerHTML = `<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Opción Activa (Ahorro S/ ${l.saving.toLocaleString()})</span>`;
+          }
+          if (cardTransport) cardTransport.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
+          if (btnTransport) {
+            btnTransport.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
+            btnTransport.innerHTML = `<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Cambiar a esta opción (+ S/ ${t.saving.toLocaleString()})</span>`;
+          }
         }
 
         // Proyección con Reajuste Seleccionado
-        const saving = State.rebalanceSelection === 'transport' ? 600 : 360;
         const projectedBalance = resultingBalance + saving;
         const freeMargin = projectedBalance - State.reserveFund;
 
         document.getElementById('proj-balance-val').textContent = `S/ ${projectedBalance.toLocaleString()}`;
-        document.getElementById('proj-saving-desc').textContent = `Incluye recuperación de S/ ${saving.toLocaleString()}`;
+        document.getElementById('proj-saving-desc').textContent = State.rebalanceSelection === 'keep' ? "Plan original conservado (sin recortes)" : `Incluye recuperación de S/ ${saving.toLocaleString()}`;
         document.getElementById('free-margin-val').textContent = `${freeMargin >= 0 ? '+ ' : ''}S/ ${freeMargin.toLocaleString()}`;
 
         const cofreStatus = document.getElementById('cofre-status-text');
         const semaBadge = document.getElementById('semaphore-badge');
 
         if (projectedBalance >= State.reserveFund) {
-          cofreStatus.textContent = "¡Cofre S/ 500 Repuesto!";
+          cofreStatus.textContent = State.rebalanceSelection === 'keep' ? "¡Cofre S/ 500 Intacto y Seguro!" : "¡Cofre S/ 500 Repuesto!";
           semaBadge.textContent = "SEMÁFORO VERDE";
           semaBadge.className = "font-label-badge text-label-badge bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-black shadow-sm";
         } else {
@@ -3659,14 +3943,14 @@
         // Comprobación Matemática del Reajuste Dinámica
         document.getElementById('math-saldo').innerHTML = `Saldo restante: <strong>S/ ${resultingBalance.toLocaleString()}</strong>`;
         document.getElementById('math-ahorro').innerHTML = `+ S/ ${saving.toLocaleString()} ahorro reajuste`;
-        document.getElementById('math-total').innerHTML = `S/ ${projectedBalance.toLocaleString()} (Cofre S/ 500 repuesto + S/ ${Math.max(0, freeMargin).toLocaleString()} libre)`;
+        document.getElementById('math-total').innerHTML = `S/ ${projectedBalance.toLocaleString()} (Cofre S/ 500 ${State.rebalanceSelection === 'keep' ? 'intacto' : 'repuesto'} + S/ ${Math.max(0, freeMargin).toLocaleString()} libre)`;
 
         const textReflex = document.getElementById('reflexion-estudiante');
         if (textReflex && !textReflex.value.trim()) textReflex.value = State.rebalanceJustification;
 
         const btnValidateFinal = document.getElementById('btn-validate-final');
         if (btnValidateFinal) {
-          btnValidateFinal.innerHTML = '<span class="material-symbols-outlined text-[24px]">verified</span><span>🛡️ Validar Reajuste y Ver Pasaporte Final</span>';
+          btnValidateFinal.innerHTML = '<span class="material-symbols-outlined text-[24px]">verified</span><span>🛡️ Validar Presupuesto y Ver Pasaporte Final</span>';
           btnValidateFinal.className = "w-full py-4 px-6 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-black shadow-lg flex items-center justify-center gap-2 transition-transform active:scale-95 hover:brightness-105 cursor-pointer";
         }
       }
@@ -3681,50 +3965,55 @@
             btn.className = "event-pill-btn flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-badge text-label-badge shadow-sm whitespace-nowrap transition-all hover:bg-surface-container cursor-pointer";
           }
         });
-        renderSurpriseView();
         
         const event = surpriseEvents[eventKey];
         const prevBalance = calculateBalance();
+        const resultingBalance = prevBalance - event.cost;
+        
+        // Si el saldo cubre los 500, predeterminar a 'keep' a menos que ya hayan elegido reajuste
+        if (resultingBalance >= State.reserveFund && State.rebalanceSelection !== 'transport' && State.rebalanceSelection !== 'lodging') {
+          State.rebalanceSelection = 'keep';
+        } else if (resultingBalance < State.reserveFund && State.rebalanceSelection === 'keep') {
+          State.rebalanceSelection = 'transport';
+        }
+
+        renderSurpriseView();
+        
         const speech = getDynamicSurpriseSpeech(event, prevBalance);
         speakVoice(speech, 260);
       }
 
       function switchRebalance(type) {
         State.rebalanceSelection = type;
-        const cardTransport = document.getElementById('rebalance-opt-transport');
-        const cardLodging = document.getElementById('rebalance-opt-lodging');
-        const btnTransport = document.getElementById('btn-rebal-transport');
-        const btnLodging = document.getElementById('btn-rebal-lodging');
         const textarea = document.getElementById('reflexion-estudiante');
 
         const prevBal = calculateBalance();
         const ev = surpriseEvents[State.surpriseEventKey];
         const resBal = prevBal - ev.cost;
+        const optSavings = getRebalanceOptionSavings();
+        const t = optSavings.transport;
+        const l = optSavings.lodging;
 
-        if (type === 'transport') {
-          cardTransport.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container";
-          cardLodging.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
-
-          btnTransport.className = "w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer";
-          btnTransport.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Opción Activa (Ahorro S/ 600)</span>';
-
-          btnLodging.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
-          btnLodging.innerHTML = '<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Cambiar a esta opción (+ S/ 360)</span>';
-
-          State.rebalanceJustification = `Teníamos S/ ${prevBal.toLocaleString()} y tras ${ev.label.toLowerCase()} de S/ ${ev.cost.toLocaleString()} nos quedaban S/ ${resBal.toLocaleString()}. Cambiamos al Bus Estándar para ahorrar S/ 600, alcanzando S/ ${(resBal + 600).toLocaleString()}, lo cual repone los S/ 500 de reserva del cofre y nos deja S/ ${(resBal + 100).toLocaleString()} libres para el retorno.`;
-          speakVoice("¡Excelente decisión! Cambiando a Bus Estándar ahorran seiscientos soles, reponen el cofre de seguridad de quinientos soles y aseguran un retorno tranquilo.", 240);
+        if (type === 'keep') {
+          const surplus = resBal - State.reserveFund;
+          State.rebalanceJustification = `Teníamos S/ ${prevBal.toLocaleString()} y tras ${ev.label.toLowerCase()} de S/ ${ev.cost.toLocaleString()} nos quedaron S/ ${resBal.toLocaleString()}. Como este saldo cubre los S/ 500 obligatorios del cofre de reserva y nos deja S/ ${surplus.toLocaleString()} libres, decidimos mantener nuestro plan original sin recortes.`;
+          speakVoice(`¡Excelente! Su presupuesto fue tan responsable que no necesitan hacer recortes. Mantienen su plan con los quinientos soles de reserva seguros y ${surplus} soles libres para el regreso.`, 240);
+        } else if (type === 'transport') {
+          if (resBal >= State.reserveFund) {
+            State.rebalanceJustification = `Aunque nuestro saldo de S/ ${resBal.toLocaleString()} ya cubría la reserva, cambiamos al Bus Estándar para ahorrar S/ ${t.saving.toLocaleString()} adicionales, elevando nuestro margen libre de regreso a S/ ${(resBal + t.saving - State.reserveFund).toLocaleString()}.`;
+            speakVoice(`¡Muy previsores! Cambiando a Bus Estándar ahorran ${t.saving} soles más y regresarán con un margen libre aún mayor.`, 240);
+          } else {
+            State.rebalanceJustification = `Teníamos S/ ${prevBal.toLocaleString()} y tras ${ev.label.toLowerCase()} de S/ ${ev.cost.toLocaleString()} nos quedaban S/ ${resBal.toLocaleString()}. Cambiamos al Bus Estándar para ahorrar S/ ${t.saving.toLocaleString()}, alcanzando S/ ${(resBal + t.saving).toLocaleString()}, lo cual repone los S/ 500 de reserva del cofre para volver seguros a casa.`;
+            speakVoice(`¡Excelente decisión! Cambiando a Bus Estándar ahorran ${t.saving} soles, reponen el cofre de seguridad de quinientos soles y aseguran un retorno tranquilo.`, 240);
+          }
         } else {
-          cardLodging.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer ring-2 ring-primary-container";
-          cardTransport.className = "rebalance-card p-space-sm rounded-DEFAULT bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all cursor-pointer opacity-85 hover:opacity-100";
-
-          btnLodging.className = "w-full py-2 px-3 rounded-DEFAULT bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer";
-          btnLodging.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Opción Activa (Ahorro S/ 360)</span>';
-
-          btnTransport.className = "w-full py-2 px-3 rounded-DEFAULT bg-surface-container-high text-on-surface font-headline-sm text-[14px] font-bold shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-all cursor-pointer";
-          btnTransport.innerHTML = '<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span><span>Cambiar a esta opción (+ S/ 600)</span>';
-
-          State.rebalanceJustification = `Cambiamos al Hostal Mochilero para ahorrar S/ 360. Con nuestro saldo de S/ ${resBal.toLocaleString()} alcanzamos S/ ${(resBal + 360).toLocaleString()}, aportando a la seguridad de nuestro equipo ante ${ev.label.toLowerCase()}.`;
-          speakVoice("Cambiando a Hostal Mochilero recuperan trescientos sesenta soles para amortiguar el impacto del imprevisto.", 240);
+          if (resBal >= State.reserveFund) {
+            State.rebalanceJustification = `Cambiamos al Hostal Mochilero para ahorrar S/ ${l.saving.toLocaleString()} adicionales de forma solidaria, alcanzando un saldo de S/ ${(resBal + l.saving).toLocaleString()} para cuidar a todo el equipo.`;
+            speakVoice(`Cambiando a Hostal Mochilero suman ${l.saving} soles de ahorro adicional para mayor tranquilidad del equipo.`, 240);
+          } else {
+            State.rebalanceJustification = `Cambiamos al Hostal Mochilero para ahorrar S/ ${l.saving.toLocaleString()}. Con nuestro saldo de S/ ${resBal.toLocaleString()} alcanzamos S/ ${(resBal + l.saving).toLocaleString()}, aportando a la seguridad de nuestro equipo ante ${ev.label.toLowerCase()}.`;
+            speakVoice(`Cambiando a Hostal Mochilero recuperan ${l.saving} soles para amortiguar el impacto del imprevisto y recuperar la reserva.`, 240);
+          }
         }
 
         if (textarea) textarea.value = State.rebalanceJustification;
@@ -3737,14 +4026,42 @@
       function renderPassportView() {
         const dest = destinationsData[State.destination];
         const event = surpriseEvents[State.surpriseEventKey];
+        const optSavings = getRebalanceOptionSavings();
+        const t = optSavings.transport;
+        const l = optSavings.lodging;
 
-        // Tags del Equipo y Destino
-        document.getElementById('final-team-name-tag').textContent = `👥 ${State.teamName}`;
-        document.getElementById('final-dest-name-tag').textContent = `📍 ${dest.name} (${dest.region})`;
+        // 1. Datos y Fondos Dinámicos del Pasaporte Oficial
+        const passportHeroBg = document.getElementById('passport-hero-bg');
+        if (passportHeroBg && dest && dest.bgImage) {
+          passportHeroBg.style.backgroundImage = `url('${dest.bgImage}')`;
+        }
 
-        // Cálculos Auditados
+        const passportTeamName = document.getElementById('passport-team-name');
+        if (passportTeamName) passportTeamName.textContent = State.teamName || 'Los Chasquis Matemáticos';
+
+        const passportDestName = document.getElementById('passport-dest-name');
+        if (passportDestName && dest) passportDestName.textContent = `${dest.name} (${dest.region})`;
+
+        const passportDestRoute = document.getElementById('passport-dest-route');
+        if (passportDestRoute && dest) passportDestRoute.textContent = dest.altRoute;
+
+        const passportStampDest = document.getElementById('passport-stamp-dest');
+        if (passportStampDest && dest) passportStampDest.textContent = `${dest.name.toUpperCase()} VISITADO`;
+
+        // Guía Oficial Asignado(a)
+        const isKusi = State.guide === 'kusi';
+        const guideImg = document.getElementById('passport-guide-img');
+        const guideName = document.getElementById('passport-guide-name');
+        const guideBadge = document.getElementById('passport-guide-badge');
+        if (guideImg) guideImg.src = isKusi ? 'assets/images/kusi.jpg' : 'assets/images/chasky.jpg';
+        if (guideName) guideName.textContent = isKusi ? 'Kusi' : 'Chasky';
+        if (guideBadge) guideBadge.textContent = `${isKusi ? 'Kusi' : 'Chasky'} • Guía Oficial de Ruta`;
+
+        // Cálculos Auditados Dinámicos
         let servicesTotal = calculateTotalSpent();
-        const rebalanceSaving = State.rebalanceSelection === 'transport' ? 600 : 360;
+        let rebalanceSaving = 0;
+        if (State.rebalanceSelection === 'transport') rebalanceSaving = t.saving;
+        else if (State.rebalanceSelection === 'lodging') rebalanceSaving = l.saving;
         
         const finalServicesCost = Math.max(0, servicesTotal - rebalanceSaving);
         const finalEmergencyCost = event.cost;
@@ -3752,13 +4069,24 @@
         const handBalance = State.initialBudget - totalOutflow;
         const freeSurplus = handBalance - State.reserveFund;
 
+        const passportKpiHand = document.getElementById('passport-kpi-hand');
+        if (passportKpiHand) passportKpiHand.textContent = `S/ ${handBalance.toLocaleString()}`;
+
+        // Banda Inferior MRZ (Formato Pasaporte Internacional)
+        const cleanTeam = (State.teamName || 'EQUIPO').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Z0-9]/g, '<');
+        const mrzLine1 = ('P<PER<<' + cleanTeam).padEnd(44, '<').substring(0, 44);
+        const mrzLine2 = ('PE2026<' + State.initialBudget + '<7PER<<<<<<<6P<PRIMARIA<COFRE<S500<OK').padEnd(44, '<').substring(0, 44);
+        const mrzZone = document.getElementById('passport-mrz-zone');
+        if (mrzZone) mrzZone.innerHTML = `${mrzLine1}<br/>${mrzLine2}`;
+
+        // KPI Balance Financiero General
         document.getElementById('final-kpi-services').textContent = `- S/ ${finalServicesCost.toLocaleString()}`;
         document.getElementById('final-kpi-emergency').textContent = `- S/ ${finalEmergencyCost.toLocaleString()}`;
         document.getElementById('final-kpi-emergency-tag').textContent = `${event.label} superada`;
         document.getElementById('final-hand-balance').textContent = `S/ ${handBalance.toLocaleString()}`;
         document.getElementById('final-hand-breakdown').textContent = `Incluye: S/ 500 (Reserva protegida) + S/ ${Math.max(0, freeSurplus).toLocaleString()} (Excedente libre)`;
 
-        // Renderizar las Tarjetas del Pasaporte Visual
+        // Renderizar las Tarjetas de Visas y Sellos del Pasaporte
         const passportContainer = document.getElementById('final-passport-cards-list');
         passportContainer.innerHTML = '';
 
@@ -3774,36 +4102,41 @@
           let sel = State.selections[idx];
           let opt = (sel && sel.optionId) ? st.options.find(o => o.id === sel.optionId) : st.options[1];
           let isReadjusted = (idx === 0 && State.rebalanceSelection === 'transport') || (idx === 1 && State.rebalanceSelection === 'lodging');
-          let costToDisplay = opt.costTotal;
-          let optNameToDisplay = opt.name;
-          let formulaToDisplay = opt.calcFormula;
+          let costToDisplay = opt ? opt.costTotal : 0;
+          let optNameToDisplay = opt ? opt.name : '';
+          let formulaToDisplay = opt ? opt.calcFormula : '';
 
           if (isReadjusted) {
             if (idx === 0) {
               optNameToDisplay = "Bus Estándar (Reajustado por emergencia)";
               costToDisplay = 800;
-              formulaToDisplay = "4 boletos × S/ 200 = S/ 800 (Ahorro S/ 600)";
+              formulaToDisplay = `4 boletos × S/ 200 = S/ 800 (Ahorro S/ ${t.saving.toLocaleString()})`;
             } else if (idx === 1) {
               optNameToDisplay = "Hostal Mochilero (Reajustado por emergencia)";
               costToDisplay = 320;
-              formulaToDisplay = "2 noches × S/ 160 = S/ 320 (Ahorro S/ 360)";
+              formulaToDisplay = `2 noches × S/ 160 = S/ 320 (Ahorro S/ ${l.saving.toLocaleString()})`;
             }
           }
 
           const card = document.createElement('div');
-          card.className = "bg-surface-container-lowest rounded-DEFAULT p-space-sm shadow-sm flex gap-space-sm items-center";
+          card.className = "bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex gap-space-sm items-center border border-amber-500/20";
           card.innerHTML = `
-            <div class="w-16 h-16 rounded-DEFAULT overflow-hidden shrink-0 bg-surface-container">
+            <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-surface-container border border-slate-300/60 shadow-sm relative">
               <img class="w-full h-full object-cover" src="${passportImgs[idx]}" alt="${st.title}" onerror="this.src='assets/images/hero_regions.jpg'"/>
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between gap-1">
-                <h3 class="font-body-lg text-body-lg text-on-surface truncate">${idx + 1}. ${st.title.split(':')[1]}</h3>
-                <span class="font-label-badge text-label-badge bg-surface-container px-1.5 py-0.5 rounded text-on-surface font-bold">S/ ${costToDisplay.toLocaleString()}</span>
+                <h3 class="font-body-lg text-body-lg text-on-surface truncate font-bold">${idx + 1}. ${st.title.split(':')[1]}</h3>
+                <span class="font-label-badge text-label-badge bg-amber-100 text-amber-900 border border-amber-300 px-2 py-0.5 rounded font-black">S/ ${costToDisplay.toLocaleString()}</span>
               </div>
               <p class="font-body-sm text-[12px] text-on-surface-variant truncate">${optNameToDisplay}</p>
-              <div class="bg-surface-container-low px-2 py-0.5 rounded mt-1 font-label-badge text-[11px] text-on-surface-variant inline-block">
-                Operación: ${formulaToDisplay}
+              <div class="flex items-center gap-2 mt-1 flex-wrap">
+                <span class="bg-surface-container-low px-2 py-0.5 rounded font-label-badge text-[11px] text-on-surface-variant inline-block">
+                  Cálculo: ${formulaToDisplay}
+                </span>
+                <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300 inline-flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-[13px]">verified</span> Visado Estación ${idx + 1}
+                </span>
               </div>
             </div>
           `;
@@ -3811,26 +4144,35 @@
         });
 
         // Tarjeta de Emergencia en el Pasaporte
+        const prevBalBeforeSurprise = calculateBalance();
+        const resBalBeforeRebalance = prevBalBeforeSurprise - event.cost;
+        let resolutionText = '';
+        if (resBalBeforeRebalance >= State.reserveFund) {
+          resolutionText = `Resolución: Gasto de S/ ${event.cost.toLocaleString()} absorbido al 100% con saldo regular. Cofre de reserva de S/ 500 intacto (+ S/ ${Math.max(0, freeSurplus).toLocaleString()} de margen libre).`;
+        } else {
+          resolutionText = `Resolución: Cubierto con saldo disponible y reajuste solidario, reponiendo exitosamente los S/ 500 del cofre de seguridad escolar.`;
+        }
+
         const emergencyCard = document.createElement('div');
-        emergencyCard.className = "bg-error-container/20 rounded-DEFAULT p-space-sm shadow-sm flex gap-space-sm items-center";
+        emergencyCard.className = "bg-error-container/20 rounded-xl p-space-sm shadow-sm flex gap-space-sm items-center border border-error/30";
         emergencyCard.innerHTML = `
-          <div class="w-16 h-16 rounded-DEFAULT bg-error-container flex items-center justify-center shrink-0 text-on-error-container">
+          <div class="w-16 h-16 rounded-lg bg-error-container flex items-center justify-center shrink-0 text-on-error-container shadow-inner">
             <span class="material-symbols-outlined text-[32px]">local_hospital</span>
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between gap-1">
-              <h3 class="font-body-lg text-body-lg text-on-error-container truncate">🚑 Tarjeta Sorpresa: ${event.label}</h3>
-              <span class="font-label-badge text-label-badge bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-bold">S/ ${event.cost.toLocaleString()}</span>
+              <h3 class="font-body-lg text-body-lg text-on-error-container truncate font-bold">🚑 Sello Sorpresa: ${event.label}</h3>
+              <span class="font-label-badge text-label-badge bg-error text-on-error px-2 py-0.5 rounded font-black">S/ ${event.cost.toLocaleString()}</span>
             </div>
             <p class="font-body-sm text-[12px] text-on-surface-variant truncate">${event.title}</p>
-            <div class="bg-surface-container-lowest px-2 py-0.5 rounded mt-1 font-label-badge text-[11px] text-on-error-container inline-block">
-              Resolución: S/ 500 cubiertos con el cofre + S/ ${(event.cost - 500)} saldados con el reajuste escolar (Cofre repuesto)
+            <div class="bg-surface-container-lowest px-2 py-0.5 rounded mt-1 font-label-badge text-[11px] text-on-error-container inline-block border border-error/20">
+              ${resolutionText}
             </div>
           </div>
         `;
         passportContainer.appendChild(emergencyCard);
 
-        updateTickerMessage(`${State.guide === 'chasky' ? 'Chasky' : 'Kusi'}: "¡Felicitaciones ${State.teamName}! Misión cumplida con éxito."`);
+        updateTickerMessage(`${State.guide === 'kusi' ? 'Kusi' : 'Chasky'}: "¡Felicitaciones ${State.teamName}! Misión cumplida con éxito."`);
       }
 
       // -----------------------------------------------------------------------
@@ -4143,11 +4485,15 @@
         });
 
         // Opciones de Reajuste
+        const btnRebalKeep = document.getElementById('btn-rebal-keep');
+        const cardRebalKeep = document.getElementById('rebalance-opt-keep');
         const btnRebalTransport = document.getElementById('btn-rebal-transport');
         const btnRebalLodging = document.getElementById('btn-rebal-lodging');
         const cardRebalTransport = document.getElementById('rebalance-opt-transport');
         const cardRebalLodging = document.getElementById('rebalance-opt-lodging');
 
+        if (btnRebalKeep) btnRebalKeep.addEventListener('click', () => switchRebalance('keep'));
+        if (cardRebalKeep) cardRebalKeep.addEventListener('click', () => switchRebalance('keep'));
         if (btnRebalTransport) btnRebalTransport.addEventListener('click', () => switchRebalance('transport'));
         if (btnRebalLodging) btnRebalLodging.addEventListener('click', () => switchRebalance('lodging'));
         if (cardRebalTransport) cardRebalTransport.addEventListener('click', () => switchRebalance('transport'));
